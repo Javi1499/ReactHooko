@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 import Producto from './components/Producto';
+import Carrito from './components/Carrito';
 function App() {
   //Listado de productos
   const [productos, setProductos] = useState([
@@ -10,7 +11,8 @@ function App() {
     { id: 3, nombre: 'Short', precio: 40 },
     { id: 4, nombre: 'Tenis', precio: 70 }
   ]);
-
+  //Stata para carrito de compras
+  const [carrito, setCarrito] = useState([])
 
   //Obtener fecha
   const fecha = new Date().getFullYear();
@@ -23,8 +25,18 @@ function App() {
 
       <h1>Lista de productos</h1>
       {productos.map(producto => (
-        <Producto />
+        <Producto
+          key={producto.id}
+          producto={producto}
+          carrito={carrito}
+          setCarrito={setCarrito}
+          productos={productos}
+        />
       ))}
+      <Carrito
+      carrito={carrito}
+      setCarrito={setCarrito}
+      />
       <Footer
         fecha={fecha}
       />
