@@ -1,4 +1,5 @@
 import React from 'react';
+
 const Cita = ({cita, eliminarCita}) => (
     <div className="cita">
         <p>Mascota:<span>{cita.mascota}</span></p>
@@ -17,4 +18,6 @@ const Cita = ({cita, eliminarCita}) => (
   );
 
  
+
+
 export default Cita;

@@ -1,14 +1,26 @@
 import { React, Fragment, useState, useEffect } from "react";
 import Formulario from './components/Formulario'
 import Cita from './components/Cita'
+import PropTypes from 'prop-types';
 
 function App() {
+
+  //Citas en localStorage
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'))
+  if(!citasIniciales){
+    citasIniciales = [];
+  }
   //Arreglo decitas
-  const [citas, setCitas] = useState([]);
+  const [citas, setCitas] = useState(citasIniciales);
 //use Effect para realizar operaciones cuando el state cambia
 useEffect(() => {
-  console.log('lista');
-})
+  let citasIniciales = JSON.parse(localStorage.getItem('citas'))
+  if(citasIniciales){
+    localStorage.setItem('citas', JSON.stringify(citas))
+  } else {
+    localStorage.setItem('citas', JSON.stringify([]))
+  }
+}, [citas])
   //Funcion que tome ciutas act. y tome la nueva
   const crearCita = cita => {
     setCitas([
@@ -50,4 +62,13 @@ eliminarCita={eliminarCita}
   );
 }
 
+
+Formulario.propTypes ={
+  crearCita: PropTypes.func.isRequired
+}
+
+Cita.protoType ={
+  cita: PropTypes.array.isRequired,
+  eliminar: PropTypes.func.isRequired
+}
 export default App;
