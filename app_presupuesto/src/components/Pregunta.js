@@ -1,5 +1,7 @@
 import React, {Fragment, useState } from 'react';
-import Error from './Error'
+import Error from './Error';
+import ProTypes from 'prop-types'
+
 
 const Pregunta = ({setPresupuesto, setRestante, setMostrarPregunta}) => {
     //State 
@@ -52,5 +54,10 @@ if (cantidad<1 || isNaN(cantidad)){
         </Fragment>
      );
 } 
+Pregunta.protoType = {
+    setPresupuesto: ProTypes.func.isRequired,
+    setRestante: ProTypes.func.isRequired,
+    setMostrarPregunta: ProTypes.func.isRequired
+}
  
 export default Pregunta;
